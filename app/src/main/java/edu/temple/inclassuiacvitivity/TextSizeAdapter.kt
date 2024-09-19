@@ -32,13 +32,28 @@ class TextSizeAdapter(private val context: Context, private val numberArray: Arr
         }
         textView.text = numberArray[position].toString()
         textView.setPadding(5, 10, 0, 10)
-        textView.textSize = numberArray[position].toFloat()
+        textView.textSize = 20f
 
         return textView
 
 
     }
 
-    
+    override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup?): View {
+        val textView: TextView
+
+        if (convertView != null) {
+            textView = convertView as TextView
+        } else {
+            textView = TextView(context)
+            textView.setPadding(5, 10, 0, 10)
+        }
+
+        // Set the text size for dropdown items
+        textView.textSize = numberArray[position].toFloat()
+        textView.text = "${numberArray[position]}" // Optional: Displaying the size
+
+        return textView
+    }
 
 }
